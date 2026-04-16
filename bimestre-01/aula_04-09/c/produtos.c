@@ -13,11 +13,11 @@ typedef struct Node {
     struct Node *proximo;
 } Node;
 
-void adicionarProduto(Node *head);
+void adicionarProduto(Node **headptr);
 
 int checarExistencia(Node *head);
 
-void exibirProdutos(Node *head);
+void exibirProdutos(Node **headptr);
 
 void buscaProduto(Node *head);
 
@@ -27,7 +27,7 @@ int main() {
     printf("Bem-vindo ao Gestor de Produtos!\n\n");
 
     int loop = 1;
-    Node *head = NULL;
+    Node *head = NULL, **headptr = &head;
 
     while (loop) {
         printf("Digite uma das opções do menu para prosseguir:\n\n");
@@ -43,10 +43,10 @@ int main() {
 
         switch(escolha){
             case 1:
-                adicionarProduto(head);
+                adicionarProduto(headptr);
                 break;
             case 2:
-                exibirProdutos(head);
+                exibirProdutos(headptr);
                 break;
             case 3:
                 buscaProduto(head);
@@ -65,7 +65,7 @@ int main() {
     return 0;
 }
 
-void adicionarProduto(Node *head) {
+void adicionarProduto(Node **headptr) {
     char nome[30];
     int codigo;
     double preco;
@@ -87,13 +87,13 @@ void adicionarProduto(Node *head) {
 
     novoProdutoPtr->proximo = NULL;
 
-    if (head == NULL) {
-        head = novoProdutoPtr;
-        printf("primeiro endereço: %p", head);
+    if (*headptr == NULL) {
+        *headptr = novoProdutoPtr;
+        printf("primeiro endereço: %p", *headptr);
         return;
     }
 
-    Node *temp = head;
+    Node *temp = *headptr;
     
     while (temp->proximo != NULL) {
         temp = temp->proximo;
@@ -104,26 +104,40 @@ void adicionarProduto(Node *head) {
     printf("endereço temp: %p", temp->proximo);
 }
 
-void exibirProdutos(Node *head) {
-    Node *atual = head;
+void exibirProdutos(Node **headptr) {
+    Node *atual = *headptr;
     while (atual != NULL) {
-        printf("\nProduto %d \nNome: %s\nPreço: %.2lf",  atual->prod.codigo, atual->prod.nome, atual->prod.preco);
+        printf("\nProduto %d \nNome: %s\nPreço: %.2lf\n",  atual->prod.codigo, atual->prod.nome, atual->prod.preco);
         atual = atual->proximo;
     }
 }
 
 void buscaProduto(Node *head) {
-    printf("Buscar produto");
+    int codigo;
+
+    if (head != NULL) {
+        printf("\n\nInforme o código do produto para buscar: ");
+        scanf("%d", &codigo);
+
+        printf("\nProduto não encontrado\n\n");
+    }
+
+    printf("\nNão há produtos para buscar!\n\n");
+
+
 }
 
 void liberarEspaco(Node *head) {
     if (head != NULL) {
-        free(head);
         if (head->proximo != NULL) {
             Node *temp = head;
             while (temp->proximo != NULL) {
                 free(temp);
+                temp = temp->proximo;
             }
+        }
+        else {
+            free(head);
         }
     }
 }
