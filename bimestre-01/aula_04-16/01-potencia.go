@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	var base int
-	var exp int
+  var base int
+  var exp int
 
-	base = -4
+  base = -4
   exp = 2
   
   resultado := pot(base, exp)
