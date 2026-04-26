@@ -1,65 +1,60 @@
 #include <stdio.h>
 
-void print_vector(int* vector, int size) {
-    int* end = vector + size;
-    
-    while (vector != end) {
-        printf("%d\n", *vector);
-        ++vector;
-    }
-    
-    printf("\n");
-}
-
-int main() {
-    int vector[5] = {3,2,5,4,1};
-    int size, top, bottom, swapped, i, aux;
-    
-    size = sizeof(vector) / sizeof(int);
+void cocktail_sort(int vector[], int length)
+{
+    int top, bottom, swapped, i, aux;
     
     bottom = 0;
-    top = size - 1;
+    top = length - 1;
+    swapped = 1;
     
-    while (bottom < size) {
+    while (swapped)
+    {
         swapped = 0;
         
-        i = bottom;
-        
-        while(i < top) {
+        for (i = bottom; i < top; i++)
+        {
             if (vector[i] > vector[i+1]) {
                 aux = vector[i];
                 vector[i] = vector[i+1];
                 vector[i+1] = aux;
                 swapped = 1;
-                print_vector(vector, size);
             }
-            
-            i++;
         }
+        
+        if (!swapped)
+        {
+            break;
+        }
+        
+        top--;
         
         swapped = 0;
         
-        i = top;
-        
-        while (i > bottom) {
+        for (i = top; i > bottom; i--)
+        {
             if (vector[i] < vector[i-1]) {
                 aux = vector[i];
                 vector[i] = vector[i-1];
                 vector[i-1] = aux;
                 swapped = 1;
-                print_vector(vector, size);
             }
-            
-            i--;
         }
         
-        if (swapped == 0) {
-            break;
-        }
-        
-        top--;
         bottom++;
     }
-    printf("Resultado final:\n");
-    print_vector(vector, size);
+}
+
+int main()
+{
+    int vector[] = {1,5,7,3,2,8,0,9,4,6};
+    int length = sizeof(vector) / sizeof(int);
+    
+    cocktail_sort(vector, length);
+
+    for (int i = 0; i < length; i++) {
+        printf("%d ", vector[i]);
+    }
+    
+    return 0;
 }
