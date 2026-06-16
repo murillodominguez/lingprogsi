@@ -1,5 +1,5 @@
-package bimestre02.java.exercicio1;
+package util;
 
 public enum Color {
-    AZUL, VERMELHO, AMARELO, BRANCO, PRETO
+    AZUL, VERMELHO, VERDE, AMARELO, BRANCO, PRETO
 }

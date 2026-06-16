@@ -1,4 +1,4 @@
-package bimestre02.java.exercicio1;
+package util;
 
 public class Shape {
     protected Color color;

@@ -1,4 +1,7 @@
-package bimestre02.java.exercicio1;
+package system;
+
+import util.Shape;
+import util.Color;
 
 public class Rectangle extends Shape {
 
@@ -44,6 +47,6 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return "Forma: Retângulo\nLargura: " + this.width.toString() + "\nAltura: " + this.height.toString() + "\nPerímetro: " + this.getPerimeter().toString() + "\nÁrea: " + this.getArea().toString() + "\n\n" + super.toString();
+        return "Forma: Retângulo\nLargura: " + this.width + "\nAltura: " + this.height + "\nPerímetro: " + this.getPerimeter() + "\nÁrea: " + this.getArea() + "\n\n" + super.toString();
     }
 }

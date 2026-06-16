@@ -1,4 +1,7 @@
-package bimestre02.java.exercicio1;
+package system;
+
+import util.Shape;
+import util.Color;
 
 public class Circle extends Shape {
     
@@ -33,6 +36,6 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "Forma: Círculo\nRaio: " + this.getRadius().toString() + "\nPerímetro: " + this.getPerimeter().toString() + "\nÁrea: " + this.getArea().toString() + "\n\n" + super.toString();
+        return "Forma: Círculo\nRaio: " + this.getRadius() + "\nPerímetro: " + this.getPerimeter() + "\nÁrea: " + this.getArea() + "\n\n" + super.toString();
     }
 }
